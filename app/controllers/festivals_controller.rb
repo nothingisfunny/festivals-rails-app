@@ -1,5 +1,6 @@
 class FestivalsController < ApplicationController
 	def index
+		@festivals = Festival.all
 	end
 
 	def new
@@ -20,6 +21,7 @@ class FestivalsController < ApplicationController
 	end
 
 	def edit
+		@festival = Festival.find(params[:id])
 	end
 
 	def update
@@ -31,6 +33,6 @@ class FestivalsController < ApplicationController
 	private
 
 	def festival_params
-		params.require(:festival).permit(:name, :category_id, :location, :venue, :line_up, :website)
+		params.require(:festival).permit(:name, :category_id, :location, :venue, :line_up, :website, :start, :end)
 	end
 end

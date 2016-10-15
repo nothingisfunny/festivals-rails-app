@@ -1,0 +1,10 @@
+<% @festivals.each do |festival| %>
+<%= link_to festival.name, festival_path(festival) %> <br>
+Category: <%= festival.category %> <br>
+Location: <%= festival.location %> <br>
+Venue: <%= festival.venue %> <br>
+Line Up: <%= festival.line_up %> <br>
+Website: <%= festival.website %> <br>
+<% end %>
+<%= link_to "Did we miss a cool festival? Help us by adding this event yourself!", new_festival_path%><br>
+<%= link_to "Home Page", root_path %> 
