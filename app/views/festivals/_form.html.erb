@@ -2,7 +2,7 @@
 <%= f.label :name %></br>
 <%= f.text_field :name %></br>
 <%= f.label :category %></br>
-<%= f.collection_select(:category, Category.all, :id, :name) %></br>
+<%= f.collection_select(:category_id, Category.all, :id, :name) %></br>
 <%= f.label :location %></br>
 <%= f.text_field :location %></br>
 <%= f.label :venue %></br>

@@ -1,5 +1,5 @@
 Name: <%= @festival.name %> <br>
-Category: <%= @festival.category %> <br>
+Category: <%= @festival.category.name %> <br>
 Location: <%= @festival.location %> <br>
 Venue: <%= @festival.venue %> <br>
 Line Up:<%= @festival.line_up %> <br>
@@ -7,12 +7,32 @@ Website: <%= @festival.website %> <br>
 Start Date: <%= @festival.start %> <br>
 End Date: <%= @festival.end %> <br>
 <% if @festival.end > Time.now.to_date %>
-	<%= link_to "I'm going", root_path %> <br>
-	<%= link_to "I'm interested", root_path %> <br>
+	<%= link_to root_path do %>
+		I'm going
+		<% userfestival = UserFestival.find_or_create_by(user_id: current_user.id, festival_id: @festival.id) %>
+		<% userfestival.status = "going" %>
+		<% userfestival.save %>
+	<% end %>
+	<%= link_to root_path do %>
+		I'm interested
+		<% userfestival = UserFestival.find_or_create_by(user_id: current_user.id, festival_id: @festival.id) %>
+		<% userfestival.status = "interested" %>
+		<% userfestival.save %>
+	<% end %>
 <% else %>
 	<%= link_to "I went", root_path %> <br>
 <% end %>
 
 
 <%= link_to "Suggest an edit", edit_festival_path%><br>
-<%= link_to "Home Page", root_path %> 
+<%= link_to "Home Page", root_path %> <br>
+
+Going: 
+<% UserFestival.where(status: "going").to_a.each do |userfestival| %>
+<%= User.find(userfestival.user_id).name %>
+<% end %>
+
+Interested: 
+<% UserFestival.where(status: "going").to_a.each do |userfestival| %>
+<%= User.find(userfestival.user_id).name %>
+<% end %>

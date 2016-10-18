@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :user_festival
+  has_many :festival, through: :user_festival
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

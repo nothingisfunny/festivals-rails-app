@@ -13,3 +13,28 @@
  *= require_tree .
  *= require_self
  */
+ @import url('https://fonts.googleapis.com/css?family=Bungee+Shade|Rubik');
+ .form{
+ 	display: block;
+	margin: auto;
+	text-align: center;
+	background-color: rgb(121, 164, 198);
+	width: 400px;
+	font-family: "Rubik";
+ }
+ .field input{
+ 	background-color: purple;
+ 	border-style:solid;
+ }
+ .field input:focus{
+ 	outline: none;
+ 	background-color: #3CBC8D;
+    color: white;
+ }
+	input[type="submit" i]{
+		width: 100px;
+		height: 30px;
+		background-color: black;
+		border: none;
+		color: white;
+	}
