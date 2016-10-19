@@ -21,7 +21,7 @@ h1{
 	margin-top: 100px;
 	font-family: 'Bungee Shade', cursive;
 	font-size: 4em;
-	margin-bottom: 70px;
+	margin-bottom: 50px;
 }
 
 .button{
@@ -55,8 +55,30 @@ h1{
 }
 .button-long a{
 	color: white;
-	font-family: "Rubic", sans-serif;
+	font-family: "Rubik", sans-serif;
 	font-size: 1.5em;
 	text-decoration: none;
 	font-family: "Rubik", sans-serif;
+}
+
+#explore {
+	margin-top: 20px;
+	font-family: "Bungee";
+	text-align: center;
+	font-size: 3em;
+    color: #f35626;
+    background-image: -webkit-linear-gradient(45deg,#f35626,#feab3a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-animation: hue 1s infinite linear;
+}
+
+@-webkit-keyframes hue {
+    from {
+      -webkit-filter: hue-rotate(0deg);
+    }
+    
+    to {
+      -webkit-filter: hue-rotate(360deg);
+    }
 }
