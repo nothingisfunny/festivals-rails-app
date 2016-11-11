@@ -7,3 +7,4 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 category1 = Category.create(name: "Film")
 category2 = Category.create(name: "Music")
+user1 = User.create(name: "Lucya", email: "if.the.kids.r.united@gmail.com", password: "secret", password_confirmation: "secret")
