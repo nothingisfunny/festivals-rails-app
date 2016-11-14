@@ -1,7 +1,11 @@
 <% if current_user.name %>
-Name: <%= current_user.name%></br>
+		Name: <%= current_user.name%></br>
 <% end %>
-Email: <%= current_user.email %></br>
-<%= link_to "Edit Profile", edit_user_path(current_user) %><br>
-<%= link_to "Home Page", root_path %> 
 
+<% if @user == current_user %>
+		Email: <%= current_user.email %></br>
+		<%= link_to "Edit Profile", edit_user_path(current_user) %><br>
+		<%= link_to "Home Page", root_path %> 
+		Upcoming Events: 
+		Saved Events:
+<% end %>

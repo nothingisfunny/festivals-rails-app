@@ -1,0 +1,19 @@
+<% if current_user %>
+<div id="top-bar">
+	<div id="home-link">
+		<%= link_to "FESTIVALOCATOR", root_path %>
+	</div>
+	<ul>
+		<li>
+		Hello, <%if current_user.name%><%= current_user.name %><%else%><%=current_user.email%><%end%>!
+		</li>
+		<li>
+			<%= link_to "My Profile", user_path(current_user)%>
+		</li>
+
+		<li>
+		<%= link_to "Sign Out", destroy_user_session_path, :method => :delete %><br>
+		</li>
+	</ul>
+</div>
+<% end %>

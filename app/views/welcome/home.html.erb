@@ -1,19 +1,18 @@
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-<meta name="google-signin-client_id" content="940462559415-s1h04t5kmhem45on682mbcdvffiq381c.apps.googleusercontent.com">
 <div id="home">
-<h1>FESTIVALOCATOR</h1>
 <% if !current_user %>
+<h1>FESTIVALOCATOR</h1>
 	<div class="button"><%= link_to "sign in", new_user_session_path %></div>
 	<div class="button"><%= link_to "sign up", new_user_registration_path %></div><br>
 	<div class="button-long"><%= link_to "login with Facebook!", user_facebook_omniauth_authorize_path %></div></br>
 	<div class="button-long"><%= link_to "login with Google!", user_google_oauth2_omniauth_authorize_path %></div></br>
 <% end %>
 <% if current_user %>
-Hello, <%if current_user.name%> <%= link_to current_user.name, user_path(@user)%>! <%else%> <%=link_to current_user.email, user_path(@user)%>  <%end%>
-<%= link_to "Sign Out", destroy_user_session_path, :method => :delete %><br>
-<%= link_to "Go to My Festivals", festivals_path %> <br>
-<% end %>
+<div id="explore-button-frame">
+	<div id="explore-button">
+		<div id="explore">
+			<%= link_to "EXPLORE", festivals_path %> <br>
+		</div>
+	</div>
 </div>
-<div id="explore">
-<%= link_to "EXPLORE", festivals_path %> <br>
+<% end %>
 </div>

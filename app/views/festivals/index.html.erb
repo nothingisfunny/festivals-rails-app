@@ -1,10 +1,19 @@
+<div id="wrapper">
+<div id="add-new">
+	Did we miss a cool festival? Help us by adding the event yourself!
+	<%= link_to "Add New", new_festival_path%><br>
+</div>
+
 <% @festivals.each do |festival| %>
-<%= link_to festival.name, festival_path(festival) %> <br>
-Category: <%= festival.category %> <br>
-Location: <%= festival.location %> <br>
-Venue: <%= festival.venue %> <br>
-Line Up: <%= festival.line_up %> <br>
-Website: <%= festival.website %> <br>
+	<div id="festival-item">
+		<% if festival %>
+			<h1> <%= link_to festival.name, festival_path(festival) %></h1> <br>
+			<%= festival.category.name %> Festival <br>
+			<%= festival.location %> <br>
+			<%= festival.start%> - <%=festival.end%>
+		<% end %>
+	</div>
 <% end %>
-<%= link_to "Did we miss a cool festival? Help us by adding this event yourself!", new_festival_path%><br>
-<%= link_to "Home Page", root_path %> 
+</div>
+
+
