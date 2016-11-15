@@ -53,3 +53,15 @@ festival3.save
 festival4.category_id = category1.id
 festival4.save
 
+userfestival2 = UserFestival.create(user_id: 0, festival_id: 0, status: "interested")
+userfestival1 = UserFestival.create(user_id: 0, festival_id: 1, status: "going")
+
+userfestival1 = UserFestival.create(user_id: 1, festival_id: 0, status: "going")
+userfestival2 = UserFestival.create(user_id: 1, festival_id: 1, status: "interested")
+userfestival2 = UserFestival.create(user_id: 1, festival_id: 2, status: "going")
+
+userfestival1 = UserFestival.create(user_id: 2, festival_id: 2, status: "going")
+userfestival1 = UserFestival.create(user_id: 2, festival_id: 3, status: "interested")
+
+userfestival2 = UserFestival.create(user_id: 3, festival_id: 3, status: "going")
+
