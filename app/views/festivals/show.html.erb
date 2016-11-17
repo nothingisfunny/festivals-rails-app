@@ -29,10 +29,10 @@ End Date: <%= @festival.end %> <br>
 
 Going: 
 <% UserFestival.where(status: "going").to_a.each do |userfestival| %>
-<%= User.find(userfestival.user_id).name %>
+	<%= User.find(userfestival.user_id).name %>
 <% end %>
 
 Interested: 
 <% UserFestival.where(status: "going").to_a.each do |userfestival| %>
-<%= User.find(userfestival.user_id).name %>
+	<%= User.find(userfestival.user_id).name %>
 <% end %>
