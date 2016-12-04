@@ -19,7 +19,8 @@ festival1 = Festival.create(
     line_up: "TBD",
     start: "2017-08-03",
     end: "2017-08-06",
-    website: "www.lollapalooza.com")
+    website: "www.lollapalooza.com",
+    creator_id: user1.id)
 festival2 = Festival.create(
 	name: "Hurricane",
     location: "Eichenring, Scheessel",
@@ -27,7 +28,8 @@ festival2 = Festival.create(
     line_up: "Green Day, Linkin Park, Blink-192, Editors, and more",
     start: "2017-06-23",
     end: "2017-06-25",
-    website: "www.hurricane.de")
+    website: "www.hurricane.de",
+    creator_id: user1.id)
 festival3 = Festival.create(
 	name: "Pukkelpop",
     location: "Belgium",
@@ -35,7 +37,8 @@ festival3 = Festival.create(
     line_up: "TBD",
     start: "2017-08-16",
     end: "2017-08-19",
-    website: "www.pukkelpop.be")
+    website: "www.pukkelpop.be",
+    creator_id: user1.id)
 festival4 = Festival.create(
 	name: "16th Annual Tribeca Film Festival",
     location: "New York, NY",
@@ -43,7 +46,8 @@ festival4 = Festival.create(
     line_up: "TBD",
     start: "2017-04-19",
     end: "2017-04-30",
-    website: "www.tribecafilm.com")
+    website: "www.tribecafilm.com",
+    creator_id: user1.id)
 festival1.category_id = category2.id
 festival1.save
 festival2.category_id = category2.id
@@ -53,15 +57,33 @@ festival3.save
 festival4.category_id = category1.id
 festival4.save
 
-userfestival2 = UserFestival.create(user_id: 0, festival_id: 0, status: "interested")
-userfestival1 = UserFestival.create(user_id: 0, festival_id: 1, status: "going")
+userfestival1 = UserFestival.create(user_id: user1.id, festival_id: festival1.id, status: "interested")
+userfestival2 = UserFestival.create(user_id: user1.id, festival_id: festival2.id, status: "going")
+userfestival2 = UserFestival.create(user_id: user1.id, festival_id: festival4.id, status: "going")
 
-userfestival1 = UserFestival.create(user_id: 1, festival_id: 0, status: "going")
-userfestival2 = UserFestival.create(user_id: 1, festival_id: 1, status: "interested")
-userfestival2 = UserFestival.create(user_id: 1, festival_id: 2, status: "going")
+userfestival3 = UserFestival.create(user_id: user2.id, festival_id: festival1.id, status: "going")
+userfestival4 = UserFestival.create(user_id: user2.id, festival_id: festival2.id, status: "interested")
+userfestival5 = UserFestival.create(user_id: user2.id, festival_id: festival3.id, status: "going")
 
-userfestival1 = UserFestival.create(user_id: 2, festival_id: 2, status: "going")
-userfestival1 = UserFestival.create(user_id: 2, festival_id: 3, status: "interested")
+userfestival6 = UserFestival.create(user_id: user3.id, festival_id: festival3.id, status: "going")
+userfestival7 = UserFestival.create(user_id: user3.id, festival_id: festival4.id, status: "interested")
 
-userfestival2 = UserFestival.create(user_id: 3, festival_id: 3, status: "going")
+userfestival8 = UserFestival.create(user_id: user4.id, festival_id: festival4.id, status: "going")
+
+worldpart1 = WorldPart.create(name: "Africa")
+worldpart2 = WorldPart.create(name: "Europe")
+worldpart3 = WorldPart.create(name: "Asia")
+worldpart4 = WorldPart.create(name: "North America")
+worldpart5 = WorldPart.create(name: "Oceania")
+worldpart6 = WorldPart.create(name: "South America")
+worldpart7 = WorldPart.create(name: "Antarctica")
+
+festival1.world_part_id = worldpart4.id
+festival1.save
+festival2.world_part_id = worldpart2.id
+festival2.save
+festival3.world_part_id = worldpart2.id
+festival3.save
+festival4.world_part_id = worldpart4.id
+festival4.save
 

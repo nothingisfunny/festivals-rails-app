@@ -1,6 +1,6 @@
 Name: <%= @festival.name %> <br>
 Category: <%= @festival.category.name %> <br>
-Location: <%= @festival.location %> <br>
+Location: <%= @festival.world_part.name %>, <%= @festival.location %> <br>
 Venue: <%= @festival.venue %> <br>
 Line Up:<%= @festival.line_up %> <br>
 Website: <%= @festival.website %> <br>
@@ -28,11 +28,13 @@ End Date: <%= @festival.end %> <br>
 <%= link_to "Home Page", root_path %> <br>
 
 Going: 
-<% UserFestival.where(status: "going").to_a.each do |userfestival| %>
-	<%= User.find(userfestival.user_id).name %>
+<% UserFestival.where(festival_id: 4, status: "going").to_a.each do |userfestival| %>
+	<% user = User.find(userfestival.user_id) %>
+	<%= link_to user.name, user_path(user) %>
 <% end %>
 
 Interested: 
-<% UserFestival.where(status: "going").to_a.each do |userfestival| %>
-	<%= User.find(userfestival.user_id).name %>
+<% UserFestival.where(festival_id: 4, status: "interested").to_a.each do |userfestival| %>
+	<% user = User.find(userfestival.user_id) %>
+	<%= link_to user.name, user_path(user) %>
 <% end %>

@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :user_festival
-  has_many :festival, through: :user_festival
+  has_many :festivals, through: :user_festival
+  has_many :created_festivals, :foreign_key=>"creator_id", class_name: Festival
   enum role: [:user, :admin]
   after_initialize :set_default_role, :if => :new_record?
   # Include default devise modules. Others available are:

@@ -25,14 +25,19 @@ class FestivalsController < ApplicationController
 	end
 
 	def update
+		@festival = Festival.find(params[:id])
+		@festival.update(festival_params)
+		redirect_to festival_path(@festival)
 	end
 
 	def destroy
+		@festival = Festival.find(params[:id])
+		@festival.destroy
 	end
 
 	private
 
 	def festival_params
-		params.require(:festival).permit(:name, :category_id, :location, :venue, :line_up, :website, :start, :end)
+		params.require(:festival).permit(:name, :category_id, :location, :venue, :line_up, :website, :start, :end, :world_part_id, :creator_id)
 	end
 end
