@@ -1,6 +1,20 @@
 class FestivalsController < ApplicationController
 	def index
-		@festivals = Festival.all
+		if request.get?
+			@festivals = Festival.all
+		else
+			@world_part = params[:world_part]
+			@category = params[:category]
+			if !params[:world_part].empty?
+				@festivals = Festival.all.where(world_part_id: params[:world_part])
+			else
+				@festivals = Festival.all
+			end
+
+			if !params[:category].empty?
+				@festivals = @festivals.where(category_id: params[:category])
+			end
+		end
 	end
 
 	def new

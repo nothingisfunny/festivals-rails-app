@@ -3,7 +3,13 @@
 	Did we miss a cool festival? Help us by adding the event yourself!
 	<%= link_to "Add New", new_festival_path%><br>
 </div>
-
+<%= form_tag "/index" do %>
+	<%= label_tag("Location:") %>
+	<%= select_tag 'world_part', options_from_collection_for_select(WorldPart.all, :id, :name, @world_part), include_blank: true %>
+	<%= label_tag("Category:") %>
+	<%= select_tag 'category', options_from_collection_for_select(Category.all, :id, :name, @category), include_blank: true %>
+	<%= submit_tag "Filter"%>
+<% end %>
 <% @festivals.each do |festival| %>
 	<div id="festival-item">
 		<% if festival %>

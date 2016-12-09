@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   resources :users
   resources :festivals
   root 'welcome#home'
+  post 'index' => 'festivals#index'
+  get 'index' => 'festivals#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
