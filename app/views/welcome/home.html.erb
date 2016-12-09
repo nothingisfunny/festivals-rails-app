@@ -1,5 +1,8 @@
 <div id="home">
 <% if !current_user %>
+<% if flash[:error] %>
+    <div class="error"><%= flash[:error] %></div>
+<% end %>
 <h1>FESTIVALOCATOR</h1>
 	<div class="button"><%= link_to "sign in", new_user_session_path %></div>
 	<div class="button"><%= link_to "sign up", new_user_registration_path %></div><br>

@@ -15,10 +15,13 @@
  */
  @import url('https://fonts.googleapis.com/css?family=Bungee+Shade|Rubik');
  .form{
+ 	padding-top: 30px;
+ 	padding-bottom: 30px;
  	display: block;
 	margin: auto;
+	margin-top: 70px;
 	text-align: center;
-	background-color: rgb(121, 164, 198);
+	background-color: rgba(33, 112, 237, 0.5);
 	width: 400px;
 	font-family: "Rubik";
  }
@@ -28,13 +31,23 @@
  }
  .field input:focus{
  	outline: none;
- 	background-color: #3CBC8D;
-    color: white;
+ 	background-color: yellow;
  }
-	input[type="submit" i]{
-		width: 100px;
-		height: 30px;
-		background-color: black;
-		border: none;
-		color: white;
-	}
+
+input[type="submit" i]{
+	width: 100px;
+	height: 30px;
+	margin: 5px;
+	background-color: black;
+	border: none;
+	color: white;
+}
+
+.error{
+	display: block;
+	background: rgba(255, 0, 0, 0.5);
+	max-width: 40%;
+	text-align: center;
+	margin: auto;
+}
+
