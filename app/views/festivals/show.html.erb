@@ -1,11 +1,13 @@
-Name: <%= @festival.name %> <br>
+<div class="festival-show">
+<h2><%= @festival.name %> <br></h2>
 Category: <%= @festival.category.name %> <br>
 Location: <%= @festival.world_part.name %>, <%= @festival.location %> <br>
 Venue: <%= @festival.venue %> <br>
-Line Up:<%= @festival.line_up %> <br>
-Website: <%= @festival.website %> <br>
+Line Up: <%= @festival.line_up %> <br>
+Website: <a href="#{@festival.website}"><%=  %> </a><br>
 Start Date: <%= @festival.start %> <br>
 End Date: <%= @festival.end %> <br>
+<div class="btn">
 <% if @festival.end > Time.now.to_date %>
 	<%= link_to root_path do %>
 		I'm going
@@ -13,6 +15,8 @@ End Date: <%= @festival.end %> <br>
 		<% userfestival.status = "going" %>
 		<% userfestival.save %>
 	<% end %>
+	</div>
+<div class="btn">
 	<%= link_to root_path do %>
 		I'm interested
 		<% userfestival = UserFestival.find_or_create_by(user_id: current_user.id, festival_id: @festival.id) %>
@@ -22,6 +26,7 @@ End Date: <%= @festival.end %> <br>
 <% else %>
 	<%= link_to "I went", root_path %> <br>
 <% end %>
+</div>
 
 
 <%= link_to "Suggest an edit", edit_festival_path%><br>
@@ -38,3 +43,4 @@ Interested:
 	<% user = User.find(userfestival.user_id) %>
 	<%= link_to user.name, user_path(user) %>
 <% end %>
+</div>

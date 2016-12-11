@@ -61,3 +61,37 @@
 	margin: auto;
 	text-align: center;
 }
+
+.festival-show{
+	display: block;
+	max-width: 50%;
+	margin: auto;
+	margin-top: 2%;
+	background-color: rgba(52, 22, 121, 0.4);
+	color: white;
+	font-family: "Rubik", sans-serif;
+	text-align: center;
+}
+
+.btn{
+	width: 98%;
+	height: 80px;
+	text-align: center;
+	font-family: "Rubik", sans-serif;
+	font-size: 1.3em;
+	color: white;
+	margin: 0 auto;
+	margin-top: 30px;
+}
+
+.btn a:link, .btn a:hover, .btn a:active, .b a:visited{
+	text-decoration: none;
+	display: inline-block;
+	color: white;
+	cursor: pointer;
+	background-color: rgb(52, 22, 121);
+	height: 30px;
+	line-height: 30px;
+	padding: 10px 10px;
+	text-align: center;
+}
