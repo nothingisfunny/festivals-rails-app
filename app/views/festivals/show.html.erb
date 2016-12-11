@@ -27,10 +27,7 @@ End Date: <%= @festival.end %> <br>
 	<%= link_to "I went", root_path %> <br>
 <% end %>
 </div>
-
-
-<%= link_to "Suggest an edit", edit_festival_path%><br>
-<%= link_to "Home Page", root_path %> <br>
+<br>
 
 Going: 
 <% UserFestival.where(festival_id: 4, status: "going").to_a.each do |userfestival| %>
@@ -43,4 +40,10 @@ Interested:
 	<% user = User.find(userfestival.user_id) %>
 	<%= link_to user.name, user_path(user) %>
 <% end %>
+
+<br>
+<br>
+<%= link_to "Suggest an edit", edit_festival_path%><br>
+<%= link_to "Home Page", root_path %> <br>
+
 </div>
