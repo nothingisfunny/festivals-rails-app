@@ -9,7 +9,7 @@ Start Date: <%= @festival.start %> <br>
 End Date: <%= @festival.end %> <br>
 <div class="btn">
 <% if @festival.end > Time.now.to_date %>
-	<%= link_to root_path do %>
+	<%= link_to festival_path(@festival) do %>
 		I'm going
 		<% userfestival = UserFestival.find_or_create_by(user_id: current_user.id, festival_id: @festival.id) %>
 		<% userfestival.status = "going" %>
@@ -17,7 +17,7 @@ End Date: <%= @festival.end %> <br>
 	<% end %>
 	</div>
 <div class="btn">
-	<%= link_to root_path do %>
+	<%= link_to festival_path(@festival) do %>
 		I'm interested
 		<% userfestival = UserFestival.find_or_create_by(user_id: current_user.id, festival_id: @festival.id) %>
 		<% userfestival.status = "interested" %>
@@ -43,7 +43,9 @@ Interested:
 
 <br>
 <br>
-<%= link_to "Suggest an edit", edit_festival_path%><br>
+<% if policy(@festival).update? %>
+      <%= link_to "Edit post", edit_post_path(@post) %>
+<% end %>
 <%= link_to "Home Page", root_path %> <br>
 
 </div>

@@ -23,11 +23,11 @@ class ApplicationPolicy
   end
 
   def update?
-    false
+    user.admin? || record.try(:user) == user
   end
 
   def edit?
-    update?
+    user.admin? || record.try(:user) == user
   end
 
   def destroy?
