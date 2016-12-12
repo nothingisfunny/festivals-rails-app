@@ -2,7 +2,7 @@
 <% if @user.name %>
 	Name: <%= @user.name%></br>
 <% end %>
-Email: <%= current_user.email %></br>
+Email: <%= @user.email %></br>
 <div class="btn">
 <% if @user == current_user %>
 	<%= link_to "Edit Profile", edit_user_path(current_user) %><br>
