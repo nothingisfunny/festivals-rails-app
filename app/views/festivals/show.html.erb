@@ -43,9 +43,12 @@ Interested:
 
 <br>
 <br>
+<div class="btn">
 <% if policy(@festival).update? %>
-      <%= link_to "Edit post", edit_post_path(@post) %>
+      <%= link_to "Edit Festival", edit_festival_path(@festival) %>
 <% end %>
+</div>
+<br>
 <%= link_to "Home Page", root_path %> <br>
 
 </div>
