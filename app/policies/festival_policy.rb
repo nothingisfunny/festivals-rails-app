@@ -9,4 +9,7 @@ class FestivalPolicy < ApplicationPolicy
      def update?
        user.admin? || festival.try(:user) == user
      end
+     def destroy?
+       user.admin? || festival.try(:user) == user
+     end
 end

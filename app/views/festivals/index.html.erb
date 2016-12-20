@@ -1,3 +1,7 @@
+<% if flash[:notice] %>
+	<div class="notice"> <%= flash[:notice]%> </div>
+<% end %>
+
 <div id="wrapper">
 	<div id="add-new">
 		Did we miss a cool festival? Help us by adding the event yourself!
@@ -20,19 +24,22 @@
 					<h1> <%= link_to festival.name, festival_path(festival) %></h1> <br>
 					<%= festival.category.name %> Festival <br>
 					<%= festival.location %> <br>
-					<%= festival.start%> - <%=festival.end%>
+					<%= festival.start%> - <%=festival.end%><br>
+					<% if festival.approved == false %>
+						<%= link_to "[APPROVE]", approve_path(festival) %>
+					<% end %>
 			</div>
 		<% end %>	
 	<% else%>
 		<% @festivals.each do |festival| %>
+		<% if festival.approved == true %>
 			<div id="festival-item">
-				<% if festival.approved == true %>
 					<h1> <%= link_to festival.name, festival_path(festival) %></h1> <br>
 					<%= festival.category.name %> Festival <br>
 					<%= festival.location %> <br>
-					<%= festival.start%> - <%=festival.end%>
-				<% end %>
+					<%= festival.start%> - <%=festival.end%>	
 			</div>
+		<% end %>
 		<% end %>	
 	<% end %>
 

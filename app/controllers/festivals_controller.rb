@@ -47,6 +47,33 @@ class FestivalsController < ApplicationController
 	def destroy
 		@festival = Festival.find(params[:id])
 		@festival.destroy
+		redirect_to festivals_path
+	end
+
+	def going
+		@festival = Festival.find(params[:id])
+		userfestival = UserFestival.find_or_create_by(user_id: current_user.id, festival_id: @festival.id) 
+		userfestival.status = "going"
+		userfestival.save
+		flash[:notice] = "You are now attending #{@festival.name}!"
+		redirect_to festival_path(@festival)
+	end
+
+	def interested
+		@festival = Festival.find(params[:id])
+		userfestival = UserFestival.find_or_create_by(user_id: current_user.id, festival_id: @festival.id)
+		userfestival.status = "interested"
+		userfestival.save
+		flash[:notice] = "You have successfully saved #{@festival.name}!"
+		redirect_to festival_path(@festival)
+	end
+
+	def approve	
+		@festival = Festival.find(params[:id])
+		@festival.approved = true
+		@festival.save
+		flash[:notice] = "#{@festival.name} approved!"
+		redirect_to index_path
 	end
 
 	private

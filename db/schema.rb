@@ -31,9 +31,9 @@ ActiveRecord::Schema.define(version: 20161129095459) do
     t.date     "start"
     t.date     "end"
     t.string   "website"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.boolean  "approved"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.boolean  "approved",      default: false
     t.integer  "creator_id"
     t.integer  "world_part_id"
   end

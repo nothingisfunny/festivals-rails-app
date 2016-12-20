@@ -1,3 +1,6 @@
+<% if flash[:notice] %>
+	<div class="notice"> <%= flash[:notice]%> </div>
+<% end %>
 <div class="festival-show">
 <h2><%= @festival.name %> <br></h2>
 Category: <%= @festival.category.name %> <br>
@@ -9,20 +12,10 @@ Start Date: <%= @festival.start %> <br>
 End Date: <%= @festival.end %> <br>
 <div class="btn">
 <% if @festival.end > Time.now.to_date %>
-	<%= link_to festival_path(@festival) do %>
-		I'm going
-		<% userfestival = UserFestival.find_or_create_by(user_id: current_user.id, festival_id: @festival.id) %>
-		<% userfestival.status = "going" %>
-		<% userfestival.save %>
-	<% end %>
-	</div>
+	<%= link_to "I'm going", going_path %> 
+</div>
 <div class="btn">
-	<%= link_to festival_path(@festival) do %>
-		I'm interested
-		<% userfestival = UserFestival.find_or_create_by(user_id: current_user.id, festival_id: @festival.id) %>
-		<% userfestival.status = "interested" %>
-		<% userfestival.save %>
-	<% end %>
+	<%= link_to "I'm interested", interested_path %>
 <% else %>
 	<%= link_to "I went", root_path %> <br>
 <% end %>
@@ -30,22 +23,23 @@ End Date: <%= @festival.end %> <br>
 <br>
 
 Going: 
-<% UserFestival.where(festival_id: 4, status: "going").to_a.each do |userfestival| %>
+<% UserFestival.where(festival_id: @festival.id, status: "going").to_a.each do |userfestival| %>
 	<% user = User.find(userfestival.user_id) %>
 	<%= link_to user.name, user_path(user) %>
 <% end %>
 
 Interested: 
-<% UserFestival.where(festival_id: 4, status: "interested").to_a.each do |userfestival| %>
+<% UserFestival.where(festival_id: @festival.id, status: "interested").to_a.each do |userfestival| %>
 	<% user = User.find(userfestival.user_id) %>
 	<%= link_to user.name, user_path(user) %>
 <% end %>
-
-<br>
-<br>
 <div class="btn">
+<br>
 <% if policy(@festival).update? %>
       <%= link_to "Edit Festival", edit_festival_path(@festival) %>
+<% end %>
+<% if policy(@festival).destroy? %>
+      <%= link_to "Delete Festival",  { action: :destroy, id: @festival.id }, method: :delete %>
 <% end %>
 </div>
 <br>
