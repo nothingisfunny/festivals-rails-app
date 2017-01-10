@@ -29,13 +29,12 @@ Saved Events:
 	<% end %>
 <% end %><br>
 <% if @user == current_user %>
-	Events Created by Me: 
-	<% if Festival.where(creator_id: current_user.id).count == 0 %>
-	nothing here yet
-<% else %>
-	<% Festival.where(creator_id: current_user.id).to_a.each do |festival| %>
-		<%= link_to festival.name, festival_path(festival) %>
+	<% if Festival.where(creator_id: current_user.id).count != 0 %>
+	<div class="btn">
+	<% if @user == current_user %>
+		<%= link_to "My Festivals", user_festivals_path(current_user) %>
 	<% end %>
+	</div>
 <% end %>
 <% end %>
 </div>

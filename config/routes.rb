@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   resources :users
+  resources :users, only: [:show] do
+    resources :festivals, only: [:show, :index]
+  end
   resources :festivals
   root 'welcome#home'
   post 'index' => 'festivals#index'
@@ -8,6 +11,7 @@ Rails.application.routes.draw do
   get 'festivals/:id/going' => 'festivals#going', as: 'going'
   get 'festivals/:id/interested' => 'festivals#interested', as: 'interested'
   get 'festivals/:id/approve' => 'festivals#approve', as: 'approve'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
