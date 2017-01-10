@@ -1,7 +1,14 @@
 class FestivalsController < ApplicationController
 	def index
+
 		if request.get?
-			@festivals = Festival.all
+			if params[:user_id]
+				@no_filter = true
+      			@festivals = Festival.where(creator_id: params[:user_id])
+    		else
+      			@festivals = Festival.all
+    		end
+			
 		else
 			@world_part = params[:world_part]
 			@category = params[:category]

@@ -9,10 +9,10 @@ Email: <%= @user.email %></br>
 <% end %>
 </div><br>
 Upcoming Events: 
-<% if UserFestival.where(user_id: @user.id, status: "going").count == 0 %>
+<% if UserFestival.going.where(user_id: @user.id).count == 0 %>
 	nothing here yet
 <% else %>
-	<% UserFestival.where(user_id: @user.id, status: "going").to_a.each do |userfestival| %>
+	<% UserFestival.going.where(user_id: @user.id).to_a.each do |userfestival| %>
 		<% festival = Festival.find(userfestival.festival_id) %>
 		<%= link_to festival.name, festival_path(festival) %>
 	<% end %>
@@ -20,10 +20,10 @@ Upcoming Events:
 <br>
 
 Saved Events:
-<% if UserFestival.where(user_id: @user.id, status: "interested").count == 0 %>
+<% if UserFestival.interested.where(user_id: @user.id).count == 0 %>
 	nothing here yet
 <% else %>
-	<% UserFestival.where(user_id: @user.id, status: "interested").to_a.each do |userfestival| %>
+	<% UserFestival.interested.where.(user_id: @user.id).to_a.each do |userfestival| %>
 		<% festival = Festival.find(userfestival.festival_id) %>
 		<%= link_to festival.name, festival_path(festival) %>
 	<% end %>

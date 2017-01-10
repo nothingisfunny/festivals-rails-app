@@ -7,15 +7,17 @@
 		Did we miss a cool festival? Help us by adding the event yourself!
 		<%= link_to "Add New", new_festival_path%><br>
 	</div>
-	<div id="filter">
-		<%= form_tag "/index" do %>
-		<%= label_tag("Location:") %>
-		<%= select_tag 'world_part', options_from_collection_for_select(WorldPart.all, :id, :name, @world_part), include_blank: true %>
-		<%= label_tag("Category:") %>
-		<%= select_tag 'category', options_from_collection_for_select(Category.all, :id, :name, @category), include_blank: true %>
-		<%= submit_tag "Filter"%>
+	<% if !@no_filter %>
+		<div id="filter">
+			<%= form_tag "/index" do %>
+			<%= label_tag("Location:") %>
+			<%= select_tag 'world_part', options_from_collection_for_select(WorldPart.all, :id, :name, @world_part), include_blank: true %>
+			<%= label_tag("Category:") %>
+			<%= select_tag 'category', options_from_collection_for_select(Category.all, :id, :name, @category), include_blank: true %>
+			<%= submit_tag "Filter"%>
+		<% end %>
+		</div>
 	<% end %>
-	</div>
 
 
 	<% if current_user.role == "admin" %>

@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 
 	def festivals_index
 		@user = current_user
-    	@festivals = Festival.where(creator_id: current_user.id).to_a
+    	@festivals = Festival.where(creator_id: current_user.id)
     	render template: 'festivals/index'
 	end
 

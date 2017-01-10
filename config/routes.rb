@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get 'festivals/:id/going' => 'festivals#going', as: 'going'
   get 'festivals/:id/interested' => 'festivals#interested', as: 'interested'
   get 'festivals/:id/approve' => 'festivals#approve', as: 'approve'
-
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
