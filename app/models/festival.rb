@@ -12,7 +12,7 @@ class Festival < ActiveRecord::Base
 	def artists_attributes=(artists)
 		artists.each do |id, hash|
 			artist = Artist.find_or_create_by(name: hash[:name])
-			self.artists << artist
+			debug
 			artist_festival = ArtistFestival.create(festival_id: self.id, artist_id: artist.id, description: hash[:description])
 		end
 	end

@@ -44,5 +44,7 @@ Interested:
 </div>
 <br>
 <%= link_to "Home Page", root_path %> <br>
-
+<% if !@festival.artists.empty? %>
+	<%= link_to "More about artists", festival_artists_path(@festival) %>
+<% end %>
 </div>

@@ -5,13 +5,15 @@ Rails.application.routes.draw do
     resources :festivals, only: [:show, :index]
   end
   resources :festivals
+  resources :festivals, only: [:show] do
+    resources :artists, only: [:index]
+  end
   root 'welcome#home'
   post 'index' => 'festivals#index'
   get 'index' => 'festivals#index'
   get 'festivals/:id/going' => 'festivals#going', as: 'going'
   get 'festivals/:id/interested' => 'festivals#interested', as: 'interested'
   get 'festivals/:id/approve' => 'festivals#approve', as: 'approve'
-  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

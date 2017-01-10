@@ -1,0 +1,4 @@
+<% @artists.each do |artist|%>
+Name: <%= artist.name %><br>
+Description: <%= ArtistFestival.where(artist_id: artist.id, festival_id: @festival.id).description %>
+<% end %>
