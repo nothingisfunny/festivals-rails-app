@@ -1,10 +1,21 @@
+<% if @festival.errors.any? %>
+  <div id="error-explanation">
+    <h2><%= pluralize(@festival.errors.count, "error") %> prohibited this Festival from being saved:</h2>
+    <ul id="validation-messages">
+    <% @festival.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li><br>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <div class="festival-form">
 <%= form_for @festival do |f| %>
 <%= f.label :name %></br>
 <%= f.text_field :name %></br>
 <%= f.label :category %></br>
-<%= f.collection_select(:category_id, Category.all, :id, :name) %></br>
-<%= f.collection_select(:world_part_id, WorldPart.all, :id, :name) %></br>
+<%= f.collection_select(:category_id, Category.all, :id, :name, include_blank: true)%></br>
+<%= f.collection_select(:world_part_id, WorldPart.all, :id, :name, include_blank: true)%></br>
 <%= f.label :location %></br>
 <%= f.text_field :location %></br>
 <%= f.label :venue %></br>

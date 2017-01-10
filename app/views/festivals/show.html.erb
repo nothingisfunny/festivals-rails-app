@@ -23,13 +23,13 @@ End Date: <%= @festival.end %> <br>
 <br>
 
 Going: 
-<% UserFestival.where(festival_id: @festival.id, status: "going").to_a.each do |userfestival| %>
+<% UserFestival.going.where(festival_id: @festival.id).to_a.each do |userfestival| %>
 	<% user = User.find(userfestival.user_id) %>
 	<%= link_to user.name, user_path(user) %>
 <% end %>
 
 Interested: 
-<% UserFestival.where(festival_id: @festival.id, status: "interested").to_a.each do |userfestival| %>
+<% UserFestival.interested.where(festival_id: @festival.id).to_a.each do |userfestival| %>
 	<% user = User.find(userfestival.user_id) %>
 	<%= link_to user.name, user_path(user) %>
 <% end %>

@@ -117,3 +117,24 @@
 	text-align: center;
 	margin: auto;
 }
+
+#error-explanation{
+	text-align: center;
+	display: block; 
+	background: rgba(255, 0, 0, 0.5);
+	width: 60%;
+	margin: 0 auto;
+	font-family: "Rubik", sans-serif;
+	font-size: 1em;
+}
+
+ul#validation-messages{
+	text-align: center;
+	font-family: "Rubik", sans-serif;
+	font-size: 1em;
+}
+ul#validation-messages li{
+	border: none;
+	text-decoration: none;
+	height: 10px;
+}

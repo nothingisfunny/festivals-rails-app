@@ -1,11 +1,20 @@
+<% if resource.errors.any? %>
+  <div id="error-explanation">
+    <h2><%= pluralize(resource.errors.count, "error") %> prohibited new user from being saved:</h2>
+    <ul id="validation-messages">
+    <%  resource.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li><br>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
 <div class="form">
 <h2>SIGN UP</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
   <div class="field">
     <%= f.label :name %><br />
-    <%= f.email_field :name, autofocus: true %>
+    <%= f.text_field :name, autofocus: true %>
   </div>
 
   <div class="field">
