@@ -23,7 +23,7 @@ Saved Events:
 <% if UserFestival.interested.where(user_id: @user.id).count == 0 %>
 	nothing here yet
 <% else %>
-	<% UserFestival.interested.where.(user_id: @user.id).to_a.each do |userfestival| %>
+	<% UserFestival.interested.where(user_id: @user.id).to_a.each do |userfestival| %>
 		<% festival = Festival.find(userfestival.festival_id) %>
 		<%= link_to festival.name, festival_path(festival) %>
 	<% end %>

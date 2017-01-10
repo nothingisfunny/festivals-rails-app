@@ -28,7 +28,16 @@
 <%= f.date_select :start %><br>
 <%= f.label :end%>
 <%= f.date_select :end %>
-<%= f.hidden_field :creator_id, value: current_user.id %>
+<%= f.hidden_field :creator_id, value: current_user.id %><br>
+For music festivals, please add more detail about headliners:<br>
+<%= f.fields_for :artists do |artist| %>
+	<%= artist.label :name %>
+	<%= artist.text_field :name %><br>
+	<%= artist.label :description %>
+	<%= artist.text_field :description %><br>
+<% end %>
+
 <%= f.submit %>
 <% end %>
 </div>
+

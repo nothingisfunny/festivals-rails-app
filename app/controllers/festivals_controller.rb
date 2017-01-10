@@ -4,6 +4,7 @@ class FestivalsController < ApplicationController
 		if request.get?
 			if params[:user_id]
 				@no_filter = true
+				@user_festival_path = true
       			@festivals = Festival.where(creator_id: params[:user_id])
     		else
       			@festivals = Festival.all
@@ -26,6 +27,9 @@ class FestivalsController < ApplicationController
 
 	def new
 		@festival = Festival.new
+		@festival.artists.build
+		@festival.artists.build
+		@festival.artists.build
 	end
 
 	def create
@@ -86,6 +90,6 @@ class FestivalsController < ApplicationController
 	private
 
 	def festival_params
-		params.require(:festival).permit(:name, :category_id, :location, :venue, :line_up, :website, :start, :end, :world_part_id, :creator_id)
+		params.require(:festival).permit(:name, :category_id, :location, :venue, :line_up, :website, :start, :end, :world_part_id, :creator_id, artists_attributes: [:name, :description])
 	end
 end

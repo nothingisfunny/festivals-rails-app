@@ -20,30 +20,19 @@
 	<% end %>
 
 
-	<% if current_user.role == "admin" %>
-		<% @festivals.each do |festival| %>
-			<div id="festival-item">
-					<h1> <%= link_to festival.name, festival_path(festival) %></h1> <br>
+<% @festivals.each do |festival| %>
+	<% if current_user.role=="admin" || @user_festival_path || festival.approved %>
+				<div id="festival-item">
+					<h1> <%= link_to festival.name, @user_festival_path ? user_festival_path(festival, current_user) : festival_path(festival) %></h1> <br>
 					<%= festival.category.name %> Festival <br>
 					<%= festival.location %> <br>
 					<%= festival.start%> - <%=festival.end%><br>
-					<% if festival.approved == false %>
+					<% if festival.approved == false && current_user.role == "admin" %>
 						<%= link_to "[APPROVE]", approve_path(festival) %>
 					<% end %>
 			</div>
-		<% end %>	
-	<% else%>
-		<% @festivals.each do |festival| %>
-		<% if festival.approved == true %>
-			<div id="festival-item">
-					<h1> <%= link_to festival.name, festival_path(festival) %></h1> <br>
-					<%= festival.category.name %> Festival <br>
-					<%= festival.location %> <br>
-					<%= festival.start%> - <%=festival.end%>	
-			</div>
-		<% end %>
-		<% end %>	
 	<% end %>
+<% end %>
 
 </div>
 
