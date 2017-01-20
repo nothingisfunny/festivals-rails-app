@@ -1,4 +1,8 @@
+<div class="user-field">
+<h2>Here are some of the greatest names <br> of the <%= @festival.name %> line up:</h2>
 <% @artists.each do |artist|%>
 Name: <%= artist.name %><br>
-Description: <%= ArtistFestival.where(artist_id: artist.id, festival_id: @festival.id).description %>
+Description: <%= ArtistFestival.find_by(artist_id: artist.id, festival_id: @festival.id).description %><br>
 <% end %>
+<%= link_to "Add new artist", new_festival_artist_path %>
+</div>

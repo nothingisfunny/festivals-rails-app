@@ -12,8 +12,12 @@ class Festival < ActiveRecord::Base
 	def artists_attributes=(artists)
 		artists.each do |id, hash|
 			artist = Artist.find_or_create_by(name: hash[:name])
-			debug
-			artist_festival = ArtistFestival.create(festival_id: self.id, artist_id: artist.id, description: hash[:description])
 		end
 	end
 end
+
+# What is our attribute writer trying to accomplish
+ # This existst on the new festival form
+ # Create a new festival
+ # add a row with the associations in the artist_festival table
+ # find or create the artist by name

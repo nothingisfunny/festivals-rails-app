@@ -35,6 +35,11 @@ class FestivalsController < ApplicationController
 	def create
 		@festival = Festival.create(festival_params)
 		if @festival.save
+			params[:festival][:artists_attributes].each do |id, artist|
+				if !artist[:name].empty? && !artist[:description].empty?
+					ArtistFestival.create(festival_id: @festival.id, artist_id: Artist.find_by(name: artist[:name]).id, description: artist[:description])
+				end
+			end
         	redirect_to festival_path(@festival)
       	else
         	render 'new'
@@ -47,12 +52,22 @@ class FestivalsController < ApplicationController
 
 	def edit
 		@festival = Festival.find(params[:id])
+		if @festival.artists.empty?
+			@festival.artists.build
+			@festival.artists.build
+			@festival.artists.build
+		end
 	end
 
 	def update
 		@festival = Festival.find(params[:id])
 		@festival.update(festival_params)
 		redirect_to festival_path(@festival)
+		params[:festival][:artists_attributes].each do |id, artist|
+				if !artist[:name].empty? && !artist[:description].empty?
+					ArtistFestival.create(festival_id: @festival.id, artist_id: Artist.find_by(name: artist[:name]).id, description: artist[:description])
+				end
+		end
 	end
 
 	def destroy
