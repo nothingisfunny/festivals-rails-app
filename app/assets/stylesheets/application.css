@@ -13,7 +13,7 @@
  *= require_tree .
  *= require_self
  */
- @import url('https://fonts.googleapis.com/css?family=Bungee+Shade|Rubik');
+ @import url('https://fonts.googleapis.com/css?family=Bungee+Shade|Open+Sans');
  .form{
  	padding-top: 30px;
  	padding-bottom: 30px;
@@ -23,7 +23,7 @@
 	text-align: center;
 	background-color: rgba(33, 112, 237, 0.5);
 	width: 400px;
-	font-family: "Rubik";
+	font-family: 'Open Sans', sans-serif;
  }
  .field input{
  	background-color: purple;
