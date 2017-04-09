@@ -1,10 +1,19 @@
 class FestivalsController < ApplicationController
 	def index
 		@festivals = Festival.all
-
-		if params[:param1] 
+		if params[:user_id]
+			@user_festival_path = true
 			@festivals = Festival.where(creator_id: params[:user_id])
+		elsif params[:world_part] && !params[:world_part].empty?
+			@festivals = Festival.all.where(world_part_id: WorldPart.find_by(name: params[:world_part]))
+		else
+			@festivals = Festival.all
 		end
+
+		if params[:category] && !params[:world_part].empty?
+			@festivals = @festivals.where(category_id: Category.find_by(name: params[:category]))
+		end
+		
 		# if request.get?
 		# 	if params[:user_id]
 		# 		@no_filter = true

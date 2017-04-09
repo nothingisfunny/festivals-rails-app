@@ -22,9 +22,9 @@ function filterFestivals(){
 	var category = $('[name="category"] option:selected').text()
 	var world_part = $('[name="world_part"] option:selected').text()
 	$.get('/festivals', {category: category, world_part: world_part}, function(data){
-		console.log(data);
-		$('#festivals-container').html("sup g");
-		
+		var festivals = $(data).find("#festivals-container").html()
+		$('#festivals-container').html(festivals);
+		console.log(festivals)
 	})
 }
 
