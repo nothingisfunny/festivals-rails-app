@@ -14,3 +14,9 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+function filterFestivals(){
+	$.get('/festivals', function(data){
+		$('#festivals-container').html("sup g");
+	})
+}

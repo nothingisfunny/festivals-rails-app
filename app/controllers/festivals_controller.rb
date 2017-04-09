@@ -1,6 +1,6 @@
 class FestivalsController < ApplicationController
 	def index
-
+		
 		if request.get?
 			if params[:user_id]
 				@no_filter = true

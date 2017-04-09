@@ -14,25 +14,26 @@
 			<%= select_tag 'world_part', options_from_collection_for_select(WorldPart.all, :id, :name, @world_part), include_blank: true %>
 			<%= label_tag("Category:") %>
 			<%= select_tag 'category', options_from_collection_for_select(Category.all, :id, :name, @category), include_blank: true %>
-			<%= submit_tag "Filter"%>
+			<%= submit_tag "Filter", :onclick => "filterFestivals(); return false;" %>
 		<% end %>
 		</div>
 	<% end %>
 
-
-<% @festivals.each do |festival| %>
-	<% if current_user.role=="admin" || @user_festival_path || festival.approved %>
-				<div id="festival-item">
-					<h1> <%= link_to festival.name, @user_festival_path ? user_festival_path(festival, current_user) : festival_path(festival) %></h1> <br>
-					<%= festival.category.name %> Festival <br>
-					<%= festival.location %> <br>
-					<%= festival.start%> - <%=festival.end%><br>
-					<% if festival.approved == false && current_user.role == "admin" %>
-						<%= link_to "[APPROVE]", approve_path(festival) %>
-					<% end %>
-			</div>
+<div id="festivals-container">
+	<% @festivals.each do |festival| %>
+		<% if current_user.role=="admin" || @user_festival_path || festival.approved %>
+					<div id="festival-item">
+						<h1> <%= link_to festival.name, @user_festival_path ? user_festival_path(festival, current_user) : festival_path(festival) %></h1> <br>
+						<%= festival.category.name %> Festival <br>
+						<%= festival.location %> <br>
+						<%= festival.start%> - <%=festival.end%><br>
+						<% if festival.approved == false && current_user.role == "admin" %>
+							<%= link_to "[APPROVE]", approve_path(festival) %>
+						<% end %>
+				</div>
+		<% end %>
 	<% end %>
-<% end %>
+</div>
 
 </div>
 
