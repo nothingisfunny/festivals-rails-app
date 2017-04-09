@@ -15,8 +15,19 @@
 //= require turbolinks
 //= require_tree .
 
+
+
+
 function filterFestivals(){
-	$.get('/festivals', function(data){
+	var category = $('[name="category"] option:selected').text()
+	var world_part = $('[name="world_part"] option:selected').text()
+	$.get('/festivals', {category: category, world_part: world_part}, function(data){
+		console.log(data);
 		$('#festivals-container').html("sup g");
+		
 	})
 }
+
+// GRAB FILTER VALUES
+//$('[name="category"] option:selected').text()
+//$('[name="world_part"] option:selected').text()
