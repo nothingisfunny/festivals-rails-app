@@ -2,6 +2,8 @@ class CommentsController < ApplicationController
 	before_action :set_festival
 
 	def index 
+		@comments = @festival.comments
+		render :json => @comments
 	end
 	def new 
 	end

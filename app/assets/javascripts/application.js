@@ -21,10 +21,10 @@
 function filterFestivals(){
 	var category = $('[name="category"] option:selected').text()
 	var world_part = $('[name="world_part"] option:selected').text()
-	$.get('/festivals', {category: category, world_part: world_part}, function(data){
-		var festivals = $(data).find("#festivals-container").html()
-		$('#festivals-container').html(festivals);
-	})
+	// $.get('/festivals', {category: category, world_part: world_part}, function(data){
+	// 	var festivals = $(data).find("#festivals-container").html()
+	// 	$('#festivals-container').html(festivals);
+	// })
 }
 
 // GRAB FILTER VALUES
@@ -33,15 +33,15 @@ function filterFestivals(){
 
 $(function appendComment(){
 	$("#new_comment").on("submit", function(event){
-		event.preventDefault();
 		$.ajax({
 			type: this.method, 
 			url: this.action,
 			data: $(this).serialize(),
 			success: function(response){
-				console.log(response)
+				$("#comments").append(response)
+				$("#comment_content").val('')
 			}
-
 		})
+		event.preventDefault();
 	})
 })
