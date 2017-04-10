@@ -6,13 +6,12 @@ class CommentsController < ApplicationController
 	def new 
 	end
 	def create
-		@comment = @festival.comments.build(comments_params)
+		@comment = @festival.comments.create(comments_params)
 		if @comment.save
-			redirect_to @festival
-		else
-			render "posts/show"
+			render 'comments/show', :layout => false
 		end
 	end
+
 	def show
 	end
 

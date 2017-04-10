@@ -30,3 +30,18 @@ function filterFestivals(){
 // GRAB FILTER VALUES
 //$('[name="category"] option:selected').text()
 //$('[name="world_part"] option:selected').text()
+
+$(function appendComment(){
+	$("#new_comment").on("submit", function(event){
+		event.preventDefault();
+		$.ajax({
+			type: this.method, 
+			url: this.action,
+			data: $(this).serialize(),
+			success: function(response){
+				console.log(response)
+			}
+
+		})
+	})
+})

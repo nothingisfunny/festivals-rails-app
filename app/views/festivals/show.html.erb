@@ -23,20 +23,27 @@
 	<br>
 
 	Going: 
-	<% UserFestival.going.where(festival_id: @festival.id).to_a.each do |userfestival| %>
-		<% user = User.find(userfestival.user_id) %>
-		<%= link_to user.name, user_path(user) %>
+	<% if UserFestival.going.where(festival_id: @festival.id).to_a == [] %>
+	nothing here yet 
+	<% else %>
+		<% UserFestival.going.where(festival_id: @festival.id).to_a.each do |userfestival| %>
+			<% user = User.find(userfestival.user_id) %>
+			<%= link_to user.name, user_path(user) %>
+		<% end %>
 	<% end %>
 
 	Interested: 
-	<% UserFestival.interested.where(festival_id: @festival.id).to_a.each do |userfestival| %>
-		<% user = User.find(userfestival.user_id) %>
-		<%= link_to user.name, user_path(user) %>
+	<% if UserFestival.interested.where(festival_id: @festival.id).to_a == [] %>
+	nothing here yet 
+	<% else %>
+		<% UserFestival.interested.where(festival_id: @festival.id).to_a.each do |userfestival| %>
+			<% user = User.find(userfestival.user_id) %>
+			<%= link_to user.name, user_path(user) %>
+		<% end %>
 	<% end %>
 	<div class="btn">
-	<br>
 	<% if policy(@festival).update? %>
-	      <%= link_to "Edit Festival", edit_festival_path(@festival) %>
+	     <%= link_to "Edit Festival", edit_festival_path(@festival) %>
 	<% end %>
 	<% if policy(@festival).destroy? %>
 	      <%= link_to "Delete Festival",  { action: :destroy, id: @festival.id }, method: :delete %>
