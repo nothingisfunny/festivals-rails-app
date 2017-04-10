@@ -2,6 +2,7 @@ class Festival < ActiveRecord::Base
 	belongs_to :category
 	belongs_to :world_part
 	has_many :user_festival
+	has_many :comments
 	has_many :users, through: :user_festival
 	has_many :artist_festivals
 	has_many :artists, through: :artist_festivals

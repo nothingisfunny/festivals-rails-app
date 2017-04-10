@@ -2,49 +2,51 @@
 	<div class="notice"> <%= flash[:notice]%> </div>
 <% end %>
 <div class="festival-show">
-<h2><%= @festival.name %> <br></h2>
-Category: <%= @festival.category.name %> <br>
-Location: <%= @festival.world_part.name %>, <%= @festival.location %> <br>
-Venue: <%= @festival.venue %> <br>
-Line Up: <%= @festival.line_up %> <br>
-Website: <a href="#{@festival.website}"><%=  %> </a><br>
-Start Date: <%= @festival.start %> <br>
-End Date: <%= @festival.end %> <br>
-<div class="btn">
-<% if @festival.end > Time.now.to_date %>
-	<%= link_to "I'm going", going_path %> 
-</div>
-<div class="btn">
-	<%= link_to "I'm interested", interested_path %>
-<% else %>
-	<%= link_to "I went", root_path %> <br>
-<% end %>
-</div>
-<br>
+	<h2><%= @festival.name %> <br></h2>
+	Category: <%= @festival.category.name %> <br>
+	Location: <%= @festival.world_part.name %>, <%= @festival.location %> <br>
+	Venue: <%= @festival.venue %> <br>
+	Line Up: <%= @festival.line_up %> <br>
+	Website: <a href="#{@festival.website}"><%=  %> </a><br>
+	Start Date: <%= @festival.start %> <br>
+	End Date: <%= @festival.end %> <br>
+	<div class="btn">
+	<% if @festival.end > Time.now.to_date %>
+		<%= link_to "I'm going", going_path %> 
+	</div>
+	<div class="btn">
+		<%= link_to "I'm interested", interested_path %>
+	<% else %>
+		<%= link_to "I went", root_path %> <br>
+	<% end %>
+	</div>
+	<br>
 
-Going: 
-<% UserFestival.going.where(festival_id: @festival.id).to_a.each do |userfestival| %>
-	<% user = User.find(userfestival.user_id) %>
-	<%= link_to user.name, user_path(user) %>
-<% end %>
+	Going: 
+	<% UserFestival.going.where(festival_id: @festival.id).to_a.each do |userfestival| %>
+		<% user = User.find(userfestival.user_id) %>
+		<%= link_to user.name, user_path(user) %>
+	<% end %>
 
-Interested: 
-<% UserFestival.interested.where(festival_id: @festival.id).to_a.each do |userfestival| %>
-	<% user = User.find(userfestival.user_id) %>
-	<%= link_to user.name, user_path(user) %>
-<% end %>
-<div class="btn">
-<br>
-<% if policy(@festival).update? %>
-      <%= link_to "Edit Festival", edit_festival_path(@festival) %>
-<% end %>
-<% if policy(@festival).destroy? %>
-      <%= link_to "Delete Festival",  { action: :destroy, id: @festival.id }, method: :delete %>
-<% end %>
-</div>
-<br>
-<%= link_to "Home Page", root_path %> <br>
-<% if !@festival.artists.empty? %>
-	<%= link_to "More about artists", festival_artists_path(@festival) %>
-<% end %>
+	Interested: 
+	<% UserFestival.interested.where(festival_id: @festival.id).to_a.each do |userfestival| %>
+		<% user = User.find(userfestival.user_id) %>
+		<%= link_to user.name, user_path(user) %>
+	<% end %>
+	<div class="btn">
+	<br>
+	<% if policy(@festival).update? %>
+	      <%= link_to "Edit Festival", edit_festival_path(@festival) %>
+	<% end %>
+	<% if policy(@festival).destroy? %>
+	      <%= link_to "Delete Festival",  { action: :destroy, id: @festival.id }, method: :delete %>
+	<% end %>
+	</div>
+	<br>
+	<%= link_to "Home Page", root_path %> <br>
+	<% if !@festival.artists.empty? %>
+		<%= link_to "More about artists", festival_artists_path(@festival) %>
+	<% end %>
+	
+	
 </div>
