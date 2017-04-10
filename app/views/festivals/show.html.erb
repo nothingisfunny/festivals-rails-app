@@ -48,5 +48,16 @@
 		<%= link_to "More about artists", festival_artists_path(@festival) %>
 	<% end %>
 	
-	
+	<div id="comments">
+		<h2><%= @festival.comments.length %> Comment(s):</h1>
+		<%= form_for Comment.new do |f| %>
+			<%= f.text_field :content%></br>
+			<%= f.hidden_field :user_id, value: current_user.id%></br>
+			<%= f.hidden_field :festival_id, value: @festival.id%></br>
+		<% end %>
+		<% @festival.comments.each do |comment| %>
+			<strong><%= User.find(comment.user_id).name %> said:</strong>
+			<p><%= comment.content %></p>
+		<% end %>
+	</div>
 </div>
