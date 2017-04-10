@@ -24,7 +24,6 @@ function filterFestivals(){
 	$.get('/festivals', {category: category, world_part: world_part}, function(data){
 		var festivals = $(data).find("#festivals-container").html()
 		$('#festivals-container').html(festivals);
-		console.log(festivals)
 	})
 }
 

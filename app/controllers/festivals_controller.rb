@@ -13,29 +13,6 @@ class FestivalsController < ApplicationController
 		if params[:category] && !params[:world_part].empty?
 			@festivals = @festivals.where(category_id: Category.find_by(name: params[:category]))
 		end
-		
-		# if request.get?
-		# 	if params[:user_id]
-		# 		@no_filter = true
-		# 		@user_festival_path = true
-  #     			@festivals = Festival.where(creator_id: params[:user_id])
-  #   		else
-  #     			@festivals = Festival.all
-  #   		end
-			
-		# else
-		# 	@world_part = params[:world_part]
-		# 	@category = params[:category]
-		# 	if !params[:world_part].empty?
-		# 		@festivals = Festival.all.where(world_part_id: params[:world_part])
-		# 	else
-		# 		@festivals = Festival.all
-		# 	end
-
-		# 	if !params[:category].empty?
-		# 		@festivals = @festivals.where(category_id: params[:category])
-		# 	end
-		# end
 	end
 
 	def new

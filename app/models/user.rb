@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :user_festival
+  has_many :comments
   has_many :festivals, through: :user_festival
   has_many :created_festivals, :foreign_key=>"creator_id", class_name: Festival
   enum role: [:user, :admin]
