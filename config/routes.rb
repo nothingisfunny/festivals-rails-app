@@ -7,8 +7,9 @@ Rails.application.routes.draw do
   resources :festivals
   resources :festivals, only: [:show] do
     resources :artists, only: [:index, :new, :create]
+    resources :comments
   end
-  resources :comments
+
   resources :artists
   root 'welcome#home'
   post 'index' => 'festivals#index'

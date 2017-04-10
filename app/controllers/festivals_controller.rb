@@ -38,6 +38,8 @@ class FestivalsController < ApplicationController
 
 	def show
 		@festival = Festival.find(params[:id])
+		@comments = @festival.comments
+		@comment = Comment.new
 	end
 
 	def edit
