@@ -50,11 +50,12 @@
 	<% end %>
 	</div>
 	<br>
+	<%= link_to "Home Page", root_path %> <br>
 	<% if !@festival.artists.empty? %>
 		<%= link_to "More about artists", festival_artists_path(@festival) %>
 	<% end %>
 	
-	<%= link_to "Show Comments", festival_comments_path(@festival), :class => "show_comments" %>
+	<%= link_to "Show Comments", festival_comments_path(@festival), :class => "show_comments"%>
 	<div id="comments">
 		
 	</div>
