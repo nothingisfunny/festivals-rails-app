@@ -32,7 +32,7 @@ function filterFestivals(){
 //$('[name="world_part"] option:selected').text()
 
 $(function showComments(){
-	$("a.show_comments").on("click", function(e){
+	$(document).on("click", "a.show_comments", function(e){
 		$.get(this.href).success(function(json){
 			console.log(json)
 			$("#comments").append('<h2>' + json.length + ' Comment(s):</h2>')
@@ -47,17 +47,16 @@ $(function showComments(){
 	})
 })
 
-$(function appendComment(){
-	$("#new_comment").on("submit", function(event){
-		$.ajax({
-			type: this.method, 
-			url: this.action,
-			data: $(this).serialize(),
-			success: function(response){
-				$("#comments").append(response);
-				$("#comment_content").val('');
-			}
-		})
-		event.preventDefault();
+$(document).submit("#new_comment", function(event){
+	form = $("#new_comment")[0]
+	$.ajax({
+		type: form.method, 
+		url: form.action,
+		data: $(form).serialize(),
+		success: function(response){
+			$("#comments").append(response);
+			$("#comment_content").val('');
+		}
 	})
+	event.preventDefault();
 })
