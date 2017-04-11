@@ -12,6 +12,8 @@ class CommentsController < ApplicationController
 		render :json => @comments_data
 	end
 	def new 
+		@comment = @festival.comments.new
+		render :layout => false
 	end
 	def create
 		@comment = @festival.comments.create(comments_params)

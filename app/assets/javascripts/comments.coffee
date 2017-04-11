@@ -12,6 +12,24 @@
 				$("#comments").append('<p>' + '<strong>' + comment.username + ' said: </strong>' + comment.content + '</p>');
 			})
 		})
+		$.get(this.href + '/new').success(function(response){
+			$("#new-comment-form").append(response);
+		})
 		e.preventDefault();
+	})
+})
+
+$(function appendComment(){
+	$("#new_comment").on("submit", function(event){
+		$.ajax({
+			type: this.method, 
+			url: this.action,
+			data: $(this).serialize(),
+			success: function(response){
+				$("#comments").append(response);
+				$("#comment_content").val('');
+			}
+		})
+		event.preventDefault();
 	})
 })`

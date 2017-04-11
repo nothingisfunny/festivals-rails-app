@@ -1,0 +1,6 @@
+<%= form_for ([@festival, @comment]) do |f| %>
+	<%= f.hidden_field :user_id, value: current_user.id%>
+	<%= f.hidden_field :festival_id, value: @festival.id%>
+	<%= f.text_field :content%></br>
+	<%= f.submit %>
+<% end %>
