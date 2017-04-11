@@ -3,7 +3,13 @@ class CommentsController < ApplicationController
 
 	def index 
 		@comments = @festival.comments
-		render :json => @comments
+		@comments_data = []
+		@comments.each do |comment|
+			username = {"username" => User.find(comment.user_id).name}
+			comment = JSON::parse(comment.to_json).merge(username)
+			@comments_data << comment
+		end
+		render :json => @comments_data
 	end
 	def new 
 	end
