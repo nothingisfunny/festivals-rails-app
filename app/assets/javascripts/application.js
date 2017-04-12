@@ -81,8 +81,8 @@ $(document).on("submit", ".edit_festival", function(event){
 			url: form.action,
 			data: $(form).serialize(),
 			success: function(response){
-				$.get(action + ".json").success(function(response){
-					console.log(response)
+				$.get(action + ".json").success(function(json){
+					$("#festival-show").html();
 				})
 			}
 		})

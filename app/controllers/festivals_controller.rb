@@ -40,9 +40,9 @@ class FestivalsController < ApplicationController
 		@festival = Festival.find(params[:id])
 		@comments = @festival.comments
 		@comment = Comment.new
-		respond_to do |format|
-      		format.html
-      		format.json { render json: @festival.to_json }
+		respond_to do |f|
+      		f.html {render :show}
+      		f.json {render json: @festival}
     	end
 	end
 

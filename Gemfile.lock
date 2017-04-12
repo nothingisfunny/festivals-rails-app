@@ -77,6 +77,11 @@ GEM
       thor (~> 0.14)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
+    handlebars_assets (0.23.1)
+      execjs (~> 2.0)
+      multi_json (~> 1.0)
+      sprockets (>= 2.0.0)
+      tilt (>= 1.2)
     hashie (3.4.6)
     i18n (0.7.0)
     jbuilder (2.6.0)
@@ -220,6 +225,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   devise
   figaro
+  handlebars_assets
   jbuilder (~> 2.0)
   jquery-rails
   omniauth-facebook
