@@ -44,7 +44,7 @@
 	<% end %>
 	<div class="btn">
 	<% if policy(@festival).update? %>
-	     <%= link_to "Edit Festival", edit_festival_path(@festival) %>
+	     <%= link_to "Edit Festival", edit_festival_path(@festival), :class => "edit_festival" %>
 	<% end %>
 	<% if policy(@festival).destroy? %>
 	      <%= link_to "Delete Festival",  { action: :destroy, id: @festival.id }, method: :delete %>

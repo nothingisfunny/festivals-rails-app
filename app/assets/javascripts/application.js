@@ -43,20 +43,29 @@ $(function showComments(){
 		$.get(this.href + '/new').success(function(response){
 			$("#new-comment-form").append(response);
 		})
+		$('a.show_comments').remove()
 		e.preventDefault();
 	})
 })
-
-$(document).submit("#new_comment", function(event){
-	form = $("#new_comment")[0]
-	$.ajax({
-		type: form.method, 
-		url: form.action,
-		data: $(form).serialize(),
-		success: function(response){
-			$("#comments").append(response);
-			$("#comment_content").val('');
-		}
+$(function appendComment(){
+	$(document).submit("#new_comment", function(event){
+		form = $("#new_comment")[0]
+		$.ajax({
+			type: form.method, 
+			url: form.action,
+			data: $(form).serialize(),
+			success: function(response){
+				$("#comments").append(response);
+				$("#comment_content").val('');
+			}
+		})
+		event.preventDefault();
 	})
-	event.preventDefault();
+})
+
+$(function editComment(){
+	$(document).on("click", "a.edit_festival", function(event){
+		alert("edit button was clicked!")
+		event.preventDefault();
+	})
 })
