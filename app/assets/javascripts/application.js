@@ -49,7 +49,7 @@ $(function showComments(){
 })
 $(function appendComment(){
 	$(document).submit("#new_comment", function(event){
-		form = $("#new_comment")[0]
+		var form = $("#new_comment")[0]
 		$.ajax({
 			type: form.method, 
 			url: form.action,
@@ -71,3 +71,20 @@ $(function editComment(){
 		event.preventDefault();
 	})
 })
+
+//submit edit form
+$(document).on("submit", ".edit_festival", function(event){
+		form = $(".edit_festival")[0]
+		var action = form.action
+		$.ajax({
+			type: form.method,
+			url: form.action,
+			data: $(form).serialize(),
+			success: function(response){
+				$.get(action + ".json").success(function(response){
+					console.log(response)
+				})
+			}
+		})
+		event.preventDefault();
+	})
