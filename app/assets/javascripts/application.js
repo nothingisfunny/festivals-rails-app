@@ -65,7 +65,9 @@ $(function appendComment(){
 
 $(function editComment(){
 	$(document).on("click", "a.edit_festival", function(event){
-		alert("edit button was clicked!")
+		$.get(this.href).success(function(response){
+			$("#festival-show").html(response);
+		})
 		event.preventDefault();
 	})
 })

@@ -49,6 +49,7 @@ class FestivalsController < ApplicationController
 			@festival.artists.build
 			@festival.artists.build
 		end
+		render :layout => false
 	end
 
 	def update

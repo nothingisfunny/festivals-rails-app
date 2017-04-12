@@ -2,7 +2,7 @@
 <% if flash[:notice] %>
 	<div class="notice"> <%= flash[:notice]%> </div>
 <% end %>
-<div class="festival-show">
+<div id="festival-show">
 	<h2><%= @festival.name %> <br></h2>
 	Category: <%= @festival.category.name %> <br>
 	Location: <%= @festival.world_part.name %>, <%= @festival.location %> <br>
@@ -42,6 +42,7 @@
 			<%= link_to user.name, user_path(user) %>
 		<% end %>
 	<% end %>
+	<br>
 	<div class="btn">
 	<% if policy(@festival).update? %>
 	     <%= link_to "Edit Festival", edit_festival_path(@festival), :class => "edit_festival" %>
