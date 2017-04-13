@@ -30,6 +30,12 @@ function Festival(attributes){
 	this.creator_id = attributes.creator_id
 	this.world_part_id = attributes.world_part_id
 }
+$(function(){
+	Festival.templateSource = $("#festival-template").html();
+	Festival.template = Handlebars.compile(Festival.templateSource);
+})
+
+
 
 
 function filterFestivals(){
