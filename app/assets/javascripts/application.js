@@ -13,9 +13,23 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require handlebars
 //= require_tree .
 
-
+//create object for festival
+function Festival(attributes){
+	this.name = attributes.name
+	this.id = attributes.id
+	this.catefory_id = attributes.category_id
+	this.location = attributes.location
+	this.venue = attributes.venue
+	this.line_up = attributes.line_up
+	this.start = attributes.start
+	this.end = attributes.end
+	this.website = attributes.website
+	this.creator_id = attributes.creator_id
+	this.world_part_id = attributes.world_part_id
+}
 
 
 function filterFestivals(){
