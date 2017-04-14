@@ -29,6 +29,7 @@ function Festival(attributes){
 	this.website = attributes.website
 	this.creator_id = attributes.creator_id
 	this.world_part = attributes.world_part
+	this.when = attributes.when
 }
 $(function(){
 	Festival.templateSource = $("#festival-template").html();

@@ -10,7 +10,7 @@ class FestivalSerializer < ActiveModel::Serializer
   end
 
   def when
-  	object.start.strftime('%e %B %Y')
+  	object.start.strftime('%e %B %Y') + " - " + object.end.strftime('%e %B %Y')
   end
 
 end
