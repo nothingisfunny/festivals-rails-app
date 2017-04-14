@@ -62,6 +62,69 @@
 	<div id="new-comment-form"></div>
 </div>
 
+
+
 <script id="festival-template" type="text/x-handlebars-template">
-	<p>{{name}}</p>
+
+	<% if flash[:notice] %>
+		<div class="notice"> <%= flash[:notice]%> </div>
+	<% end %>
+	
+		<h2>{{name}}</h2>
+		<p>Category: {{category}}</p>
+		<p>Location: {{world_part}}, {{location}}</p>
+		<p>Venue: {{venue}}</p>
+		<p>Lineup: {{line_up}}</p>
+		<p>Website: {{website}}</p>
+		<p>When: {{when}}</p>
+		<div class="btn">
+		<% if @festival.end > Time.now.to_date %>
+			<%= link_to "I'm going", going_path %> 
+		</div>
+		<div class="btn">
+			<%= link_to "I'm interested", interested_path %>
+		<% else %>
+			<%= link_to "I went", root_path %> <br>
+		<% end %>
+		</div>
+		<br>
+
+		Going: 
+		<% if UserFestival.going.where(festival_id: @festival.id).to_a == [] %>
+		nothing here yet 
+		<% else %>
+			<% UserFestival.going.where(festival_id: @festival.id).to_a.each do |userfestival| %>
+				<% user = User.find(userfestival.user_id) %>
+				<%= link_to user.name, user_path(user) %>
+			<% end %>
+		<% end %>
+
+		Interested: 
+		<% if UserFestival.interested.where(festival_id: @festival.id).to_a == [] %>
+		nothing here yet 
+		<% else %>
+			<% UserFestival.interested.where(festival_id: @festival.id).to_a.each do |userfestival| %>
+				<% user = User.find(userfestival.user_id) %>
+				<%= link_to user.name, user_path(user) %>
+			<% end %>
+		<% end %>
+		<br>
+		<div class="btn">
+		<% if policy(@festival).update? %>
+		     <%= link_to "Edit Festival", edit_festival_path(@festival), :class => "edit_festival" %>
+		<% end %>
+		<% if policy(@festival).destroy? %>
+		      <%= link_to "Delete Festival",  { action: :destroy, id: @festival.id }, method: :delete %>
+		<% end %>
+		</div>
+		<br>
+		<%= link_to "Home Page", root_path %> <br>
+		<% if !@festival.artists.empty? %>
+			<%= link_to "More about artists", festival_artists_path(@festival) %>
+		<% end %>
+		
+		<%= link_to "Show Comments", festival_comments_path(@festival), :class => "show_comments"%>
+		<div id="comments"></div>
+		<div id="new-comment-form"></div>
+
 </script>
