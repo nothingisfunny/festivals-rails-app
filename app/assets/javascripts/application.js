@@ -35,7 +35,9 @@ $(function(){
 	Festival.template = Handlebars.compile(Festival.templateSource);
 })
 
-
+Festival.prototype.renderShow = function(){
+	return Festival.template(this)
+}
 
 
 function filterFestivals(){
@@ -67,21 +69,21 @@ $(function showComments(){
 		e.preventDefault();
 	})
 })
-$(function appendComment(){
-	$(document).submit("#new_comment", function(event){
-		var form = $("#new_comment")[0]
-		$.ajax({
-			type: form.method, 
-			url: form.action,
-			data: $(form).serialize(),
-			success: function(response){
-				$("#comments").append(response);
-				$("#comment_content").val('');
-			}
-		})
-		event.preventDefault();
-	})
-})
+// $(function appendComment(){
+// 	$(document).submit("#new_comment", function(event){
+// 		var form = $("#new_comment")[0]
+// 		$.ajax({
+// 			type: form.method, 
+// 			url: form.action,
+// 			data: $(form).serialize(),
+// 			success: function(response){
+// 				$("#comments").append(response);
+// 				$("#comment_content").val('');
+// 			}
+// 		})
+// 		event.preventDefault();
+// 	})
+// })
 
 $(function editComment(){
 	$(document).on("click", "a.edit_festival", function(event){
@@ -94,17 +96,25 @@ $(function editComment(){
 
 //submit edit form
 $(document).on("submit", ".edit_festival", function(event){
-		form = $(".edit_festival")[0]
-		var action = form.action
+		var form = $(".edit_festival")[0]
 		$.ajax({
-			type: form.method,
+			method: "patch",
 			url: form.action,
-			data: $(form).serialize(),
-			success: function(response){
-				$.get(action + ".json").success(function(json){
-					$("#festival-show").html();
-				})
+			data: JSON.stringify($(form).serializeArray()),
+			contentType: 'application/json',
+			dataType: "json",
+			success: function(json){
+				// $.get(action + ".json").success(function(json){
+				// 	$("#festival-show").html();
+				// })
+				console.log("success")
+				// var festival = new Festival(json);
+				console.log(json)
+				// var showPage = festival.renderShow(this);
+				// console.log(showPage)
+				// $("#festival-show").html(showPage);
 			}
 		})
-		event.preventDefault();
-	})
+	event.preventDefault();
+})
+		

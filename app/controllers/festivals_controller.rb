@@ -41,8 +41,8 @@ class FestivalsController < ApplicationController
 		@comments = @festival.comments
 		@comment = Comment.new
 		respond_to do |f|
+			f.json {render json: @festival, layout: false}
       		f.html {render :show}
-      		f.json {render json: @festival}
     	end
 	end
 
@@ -102,6 +102,6 @@ class FestivalsController < ApplicationController
 	private
 
 	def festival_params
-		params.require(:festival).permit(:name, :category_id, :location, :venue, :line_up, :website, :start, :end, :world_part_id, :creator_id, artists_attributes: [:name, :description])
+		params.require(:festival).permit(:id, :name, :category_id, :location, :venue, :line_up, :website, :start, :end, :world_part_id, :creator_id, artists_attributes: [:name, :description])
 	end
 end
