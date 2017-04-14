@@ -59,12 +59,13 @@ class FestivalsController < ApplicationController
 	def update
 		@festival = Festival.find(params[:id])
 		@festival.update(festival_params)
-		render 'festivals/show'
+		# render 'festivals/show'
 		params[:festival][:artists_attributes].each do |id, artist|
 				if !artist[:name].empty? && !artist[:description].empty?
 					ArtistFestival.create(festival_id: @festival.id, artist_id: Artist.find_by(name: artist[:name]).id, description: artist[:description])
-				end
+			end
 		end
+		render json: @festival
 	end
 
 	def destroy
