@@ -20,7 +20,7 @@
 function Festival(attributes){
 	this.name = attributes.name
 	this.id = attributes.id
-	this.catefory_id = attributes.category_id
+	this.category = attributes.category
 	this.location = attributes.location
 	this.venue = attributes.venue
 	this.line_up = attributes.line_up
@@ -28,7 +28,7 @@ function Festival(attributes){
 	this.end = attributes.end
 	this.website = attributes.website
 	this.creator_id = attributes.creator_id
-	this.world_part_id = attributes.world_part_id
+	this.world_part = attributes.world_part
 }
 $(function(){
 	Festival.templateSource = $("#festival-template").html();
@@ -69,21 +69,21 @@ $(function showComments(){
 		e.preventDefault();
 	})
 })
-// $(function appendComment(){
-// 	$(document).submit("#new_comment", function(event){
-// 		var form = $("#new_comment")[0]
-// 		$.ajax({
-// 			type: form.method, 
-// 			url: form.action,
-// 			data: $(form).serialize(),
-// 			success: function(response){
-// 				$("#comments").append(response);
-// 				$("#comment_content").val('');
-// 			}
-// 		})
-// 		event.preventDefault();
-// 	})
-// })
+$(function appendComment(){
+	$(document).submit("#new_comment", function(event){
+		var form = $("#new_comment")[0]
+		$.ajax({
+			type: form.method, 
+			url: form.action,
+			data: $(form).serialize(),
+			success: function(response){
+				$("#comments").append(response);
+				$("#comment_content").val('');
+			}
+		})
+		event.preventDefault();
+	})
+})
 
 $(function editComment(){
 	$(document).on("click", "a.edit_festival", function(event){
@@ -97,22 +97,19 @@ $(function editComment(){
 //submit edit form
 $(document).on("submit", ".edit_festival", function(event){
 		var form = $(".edit_festival")[0]
+		var values = $(this).serialize()
 		$.ajax({
 			method: "patch",
 			url: form.action,
-			data: JSON.stringify($(form).serializeArray()),
-			contentType: 'application/json',
+			data: JSON.stringify($(this).serialize()),
 			dataType: "json",
 			success: function(json){
-				// $.get(action + ".json").success(function(json){
-				// 	$("#festival-show").html();
-				// })
 				console.log("success")
-				// var festival = new Festival(json);
+				var festival = new Festival(json);
 				console.log(json)
-				// var showPage = festival.renderShow(this);
-				// console.log(showPage)
-				// $("#festival-show").html(showPage);
+				var showPage = festival.renderShow(this);
+				console.log(showPage)
+				$("#festival-show").html(showPage);
 			}
 		})
 	event.preventDefault();
