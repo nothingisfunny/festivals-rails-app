@@ -105,7 +105,6 @@ $(document).on("submit", ".edit_festival", function(event){
 			data: JSON.stringify($(this).serialize()),
 			dataType: "json",
 			success: function(json){
-				console.log("success")
 				var festival = new Festival(json);
 				console.log(json)
 				var showPage = festival.renderShow(this);
