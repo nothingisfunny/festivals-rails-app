@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require handlebars
 //= require_tree .
 
@@ -53,12 +52,12 @@ function filterFestivals(){
 // GRAB FILTER VALUES
 //$('[name="category"] option:selected').text()
 //$('[name="world_part"] option:selected').text()
-
+var commentsCount = 0; 
 $(function showComments(){
 	$(document).on("click", "a.show_comments", function(e){
 		$.get(this.href).success(function(json){
-			console.log(json)
-			$("#comments").append('<h2>' + json.length + ' Comment(s):</h2>')
+			commentsCount = json.length
+			$("#comments-count").append('<h2>' + commentsCount + ' Comment(s):</h2>')
 			json.forEach(function(comment){
 				$("#comments").append('<p>' + '<strong>' + comment.username + ' said: </strong>' + comment.content + '</p>');
 			})
@@ -78,8 +77,10 @@ $(function appendComment(){
 			url: form.action,
 			data: $(form).serialize(),
 			success: function(response){
+				$("#comments-count").html( '<h2>' + (commentsCount + 1) + ' Comment(s):</h2>')
 				$("#comments").append(response);
 				$("#comment_content").val('');
+				
 			}
 		})
 		event.preventDefault();
