@@ -3,6 +3,8 @@
 	<div class="notice"> <%= flash[:notice]%> </div>
 <% end %>
 <div id="festival-show">
+	<div id="current-user-id" style="display: none"><%=current_user.id%></div>
+	<div id="current-festival-id" style="display: none"><%=@festival.id%></div>
 	<h2><%= @festival.name %> <br></h2>
 	Category: <%= @festival.category.name %> <br>
 	Location: <%= @festival.world_part.name %>, <%= @festival.location %> <br>
