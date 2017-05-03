@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   root 'welcome#home'
   post 'index' => 'festivals#index'
   get 'index' => 'festivals#index'
+  post 'attend' => 'users#attend'
   get 'festivals/:id/going' => 'festivals#going', as: 'going'
   get 'festivals/:id/interested' => 'festivals#interested', as: 'interested'
   get 'festivals/:id/approve' => 'festivals#approve', as: 'approve'
