@@ -13,10 +13,13 @@
 	End Date: <%= @festival.end %> <br>
 	<div class="btn">
 	<% if @festival.end > Time.now.to_date %>
-		<%= link_to "I'm going", going_path %> 
+		<% if UserFestival.going.where(user_id: current_user.id)%>
+			<button class="attend">Unattend</button>
+		<% else %>
+			<button class="attend">Attend</button>
+		<% end %>
 	</div>
 	<div class="btn">
-		<%= link_to "I'm interested", interested_path %>
 	<% else %>
 		<%= link_to "I went", root_path %> <br>
 	<% end %>

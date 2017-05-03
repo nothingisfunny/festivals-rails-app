@@ -98,6 +98,21 @@
 	text-align: center;
 }
 
+button.attend{
+	text-decoration: none;
+	display: inline-block;
+	text-align: center;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1em;
+	color: white;
+	margin: 0 auto;
+	margin-bottom: 10px;
+	border: none;
+	padding: 10px 10px;
+	background-color: rgb(52, 22, 121);
+	
+}
+
 .festival-form{
 	display: block;
 	background-color: rgba(60, 179, 113, 0.5);

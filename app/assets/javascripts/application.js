@@ -69,6 +69,7 @@ $(function showComments(){
 		e.preventDefault();
 	})
 })
+
 $(function appendComment(){
 	$(document).submit("#new_comment", function(event){
 		var form = $("#new_comment")[0]
@@ -116,3 +117,24 @@ $(document).on("submit", ".edit_festival", function(event){
 	event.preventDefault();
 })
 		
+// Update Attend/Unattend status
+
+$(document).on("click", "button.attend", function(event){
+	event.preventDefault();
+	console.log("clicked unattend")
+	var attend = $("button.attend")[0].innerHTML === "Attend"
+	if (attend === true){
+		$.ajax({
+			method: "post",
+			url:,
+			data: 
+		})
+	} else {
+		$.ajax({
+			method: "post",
+			url:,
+			data: 
+		})
+	}
+		
+})
