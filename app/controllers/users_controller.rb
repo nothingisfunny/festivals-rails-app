@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 		user = User.find(params[:user_id])
 		festival = Festival.find(params[:festival_id])
 		user.user_festival.create(festival_id: params[:festival_id], status:"going")
-		festival_data = {username: user.name}
+		festival_data = {username: user.name, userpath: user_path(user)}
 		render json: festival_data
 	end
 
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
 		user = User.find(params[:user_id])
 		festival = Festival.find(params[:festival_id])
 		user.user_festival.find_by(festival_id: festival.id).delete
-		festival_data = {username: user.name}
+		festival_data = {username: user.name, userpath: user_path(user)}
 		render json: festival_data
 	end
 

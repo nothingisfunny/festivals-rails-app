@@ -29,14 +29,16 @@
 	<br>
 
 	Attendees: 
-	<% if UserFestival.going.where(festival_id: @festival.id).to_a == [] %>
-	nothing here yet 
-	<% else %>
-		<% UserFestival.going.where(festival_id: @festival.id).to_a.each do |userfestival| %>
-			<% user = User.find(userfestival.user_id) %>
-			<%= link_to user.name, user_path(user) %>
+	<div id="attendees">
+		<% if UserFestival.going.where(festival_id: @festival.id).to_a == [] %>
+		nothing here yet 
+		<% else %>
+			<% UserFestival.going.where(festival_id: @festival.id).to_a.each do |userfestival| %>
+				<% user = User.find(userfestival.user_id) %>
+				<%= link_to user.name, user_path(user), id: user.name %>
+			<% end %>
 		<% end %>
-	<% end %>
+	</div>
 
 	<br>
 	<div class="btn">
