@@ -128,18 +128,18 @@ $(document).on("click", "button.attend", function(event){
 		$.ajax({
 			method: "post",
 			url:'/attend',
-			data: {user_id: user_id, festival_id: festival_id, action: 'create'},
+			data: {user_id: user_id, festival_id: festival_id},
 			success: function(response){
-				console.log(response)
+				alert("You are now attending this festival!")
 			}
 		})
 	} else {
 		$.ajax({
 			method: "delete",
-			url: '/attend',
-			data: {user_id: user_id, festival_id: festival_id, action: 'delete'},
+			url: '/unattend',
+			data: {user_id: user_id, festival_id: festival_id},
 			success: function(response){
-				console.log(response)
+				alert("You are no longer attending this festival!")
 			}
 		})
 	}

@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   post 'index' => 'festivals#index'
   get 'index' => 'festivals#index'
   post 'attend' => 'users#attend'
+  delete 'unattend' => 'users#unattend'
   get 'festivals/:id/going' => 'festivals#going', as: 'going'
   get 'festivals/:id/interested' => 'festivals#interested', as: 'interested'
   get 'festivals/:id/approve' => 'festivals#approve', as: 'approve'
