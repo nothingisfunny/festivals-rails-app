@@ -129,8 +129,9 @@ $(document).on("click", "button.attend", function(event){
 			method: "post",
 			url:'/attend',
 			data: {user_id: user_id, festival_id: festival_id},
-			success: function(response){
+			success: function(json){
 				alert("You are now attending this festival!")
+				console.log(json.username)
 			}
 		})
 	} else {
@@ -138,8 +139,9 @@ $(document).on("click", "button.attend", function(event){
 			method: "delete",
 			url: '/unattend',
 			data: {user_id: user_id, festival_id: festival_id},
-			success: function(response){
+			success: function(json){
 				alert("You are no longer attending this festival!")
+				console.log(json.username)
 			}
 		})
 	}
