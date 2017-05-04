@@ -121,20 +121,24 @@ $(document).on("submit", ".edit_festival", function(event){
 
 $(document).on("click", "button.attend", function(event){
 	event.preventDefault();
-	console.log("clicked unattend")
+	var user_id = $("#current-user-id")[0].innerHTML
+	var festival_id = $('#festival-id')[0].innerHTML
 	var attend = $("button.attend")[0].innerHTML === "Attend"
-	if (attend === true){
+	if (attend === false){
 		$.ajax({
 			method: "post",
-			url:,
-			data: 
+			url:'/attend',
+			data: {user_id: user_id, festival_id: festival_id},
+			success: function(response){
+				console.log(response)
+			}
 		})
 	} else {
-		$.ajax({
-			method: "post",
-			url:,
-			data: 
-		})
+		// $.ajax({
+		// 	method: "post",
+		// 	url:,
+		// 	data: 
+		// })
 	}
 		
 })

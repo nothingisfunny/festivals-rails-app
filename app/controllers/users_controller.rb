@@ -23,10 +23,12 @@ class UsersController < ApplicationController
 	end
 
 	def attend
-		#find a user
+		#find user and festival
 		user = User.find(params[:user_id])
+		festival = Festival.find(params[:festival_id])
 		#create a new user festival
 		user.user_festival.create(festival_id: params[:festival_id], status:"going")
+		redirect_to festival_path(festival)
 	end
 	private
 
