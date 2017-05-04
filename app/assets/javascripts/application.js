@@ -131,7 +131,8 @@ $(document).on("click", "button.attend", function(event){
 			data: {user_id: user_id, festival_id: festival_id},
 			success: function(json){
 				alert("You are now attending this festival!")
-				$("#attendees").append("<a href='http://localhost:3000" + json.userpath + "'>" + json.username+ "</a>")
+				$("#attendees").append("<a href='http://localhost:3000" + json.userpath + "' id=" + json.username + ">" + json.username+ "</a> ")
+				$("button.attend")[0].innerHTML = "Unattend"
 				console.log(json.username, json.userpath)
 			}
 		})
@@ -142,7 +143,9 @@ $(document).on("click", "button.attend", function(event){
 			data: {user_id: user_id, festival_id: festival_id},
 			success: function(json){
 				alert("You are no longer attending this festival!")
-				$('#attendees').find('#Jamie').remove()
+				console.log(`#${json.username}`)
+				$('#attendees').find(`#${json.username}`).remove()
+				$("button.attend")[0].innerHTML = "Attend"
 				console.log(json.username, json.userpath)
 			}
 		})
