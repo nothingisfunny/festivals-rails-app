@@ -124,21 +124,24 @@ $(document).on("click", "button.attend", function(event){
 	var user_id = $("#current-user-id")[0].innerHTML
 	var festival_id = $('#festival-id')[0].innerHTML
 	var attend = $("button.attend")[0].innerHTML === "Attend"
-	if (attend === false){
+	if (attend === true){
 		$.ajax({
 			method: "post",
 			url:'/attend',
-			data: {user_id: user_id, festival_id: festival_id},
+			data: {user_id: user_id, festival_id: festival_id, action: 'create'},
 			success: function(response){
 				console.log(response)
 			}
 		})
 	} else {
-		// $.ajax({
-		// 	method: "post",
-		// 	url:,
-		// 	data: 
-		// })
+		$.ajax({
+			method: "delete",
+			url: '/attend',
+			data: {user_id: user_id, festival_id: festival_id, action: 'delete'},
+			success: function(response){
+				console.log(response)
+			}
+		})
 	}
 		
 })

@@ -23,11 +23,13 @@ class UsersController < ApplicationController
 	end
 
 	def attend
-		#find user and festival
 		user = User.find(params[:user_id])
 		festival = Festival.find(params[:festival_id])
-		#create a new user festival
-		user.user_festival.create(festival_id: params[:festival_id], status:"going")
+		if params[:action] == "create"
+			user.user_festival.create(festival_id: params[:festival_id], status:"going")
+		elsif params[:action] == "delete"
+			user.user_festival.find_by(festival_id).delete
+		end
 		redirect_to festival_path(festival)
 	end
 	private

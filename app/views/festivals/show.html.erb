@@ -15,7 +15,7 @@
 	End Date: <%= @festival.end %> <br>
 	<div class="btn">
 	<% if @festival.end > Time.now.to_date %>
-		<% if UserFestival.going.where(user_id: current_user.id)%>
+		<% if UserFestival.going.where(user_id: current_user.id, festival_id: @festival.id).length === 1 %>
 			<button class="attend">Unattend</button>
 		<% else %>
 			<button class="attend">Attend</button>
@@ -28,7 +28,7 @@
 	</div>
 	<br>
 
-	Going: 
+	Attendees: 
 	<% if UserFestival.going.where(festival_id: @festival.id).to_a == [] %>
 	nothing here yet 
 	<% else %>
@@ -38,15 +38,6 @@
 		<% end %>
 	<% end %>
 
-	Interested: 
-	<% if UserFestival.interested.where(festival_id: @festival.id).to_a == [] %>
-	nothing here yet 
-	<% else %>
-		<% UserFestival.interested.where(festival_id: @festival.id).to_a.each do |userfestival| %>
-			<% user = User.find(userfestival.user_id) %>
-			<%= link_to user.name, user_path(user) %>
-		<% end %>
-	<% end %>
 	<br>
 	<div class="btn">
 	<% if policy(@festival).update? %>
