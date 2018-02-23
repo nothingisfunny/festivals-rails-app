@@ -1,14 +1,23 @@
-require 'net/http'
+require 'net/https'
 
 class FestivalFetcher
   def self.fetch
-      url = URI(Rails.application.config.predicthq_url)
+      url = URI.parse(Rails.application.config.predicthq_url)
       url.query = URI.encode_www_form("query" => "festival")
+      headers = {
+      'Authorization'=>"Bearer: #{ENV["PREDICTHQ_SECRET"]}",
+      'Content-Type' =>'application/json',
+      'Accept'=>'application/json'
+        }
       req = Net::HTTP::Get.new(url.to_s)
-      req.add_field 'Authorization', "Bearer #{Rails.application.config.predicthq_token}"
-      res = Net::HTTP.start(url.host, url.port) {|http|
-        http.request(req)
-      }
-      puts JSON.parse(res.body)
+      https = Net::HTTP.new(url.host, url.port, headers )
+      https.use_ssl = true
+      res = https.request(req)
+      puts res
+      # http = Net::HTTP.new(url.host, url.port)
+      # http.use_ssl  = true
+      
+      # resp = http.get(req, headers)
+      # puts resp
   end
 end
